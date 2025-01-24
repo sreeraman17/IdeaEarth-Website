@@ -133,13 +133,13 @@
                 </div>
 
                 <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-                        </svg>
-                    </button>
-                </div>
+<div class="md:hidden">
+    <button type="button" class="text-gray-600 hover:text-gray-900 focus:outline-none">
+        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+    </button>
+</div>
             </div>
         </div>
 
@@ -168,17 +168,17 @@
     </div>
     <div class="text-center z-10">
         <!-- Logo Container -->
-        <div class="flex justify-center mb-8">
-            <img 
-                src="https://raw.githubusercontent.com/sreeraman17/IdeaEarth-Website/main/images/ideaearth.png"
-                alt="Ideaearth Logo" 
-                class="w-auto h-20 md:h-24 lg:h-28 object-contain"
-            />
-        </div>
-        <h1 class="text-6xl font-bold mb-4">Solving for 0 to 1 and 10x</h1>
-        <p class="text-xl mb-8">We partner with visionary founders to create impact and scale with confidence</p>
-        <a href="#solving" class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-3 rounded-lg transition duration-300">Get Started</a>
+       <div class="flex justify-center mb-8">
     </div>
+    
+    <h1 class="text-5xl font-bold mb-4">Solving for</h1>
+    <h1 class="text-6xl font-bold mb-4">0 to 1</h1>
+    <h1 class="text-6xl font-bold mb-8">and 10x</h1>
+    
+    <p class="text-xl mb-12 px-4 md:px-8">We partner with visionary founders to create impact and scale with confidence</p> <!-- Added padding on sides -->
+    
+    <a href="#solving" class="bg-blue-900 hover:bg-blue-800 text-white px-8 py-3 rounded-lg transition duration-300">Get Started</a>
+</div>
 </section>
 
     <!-- Who are we solving for -->
@@ -903,17 +903,39 @@
             </div>
         </div>
     </footer>
-
     <script>
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Function to toggle mobile menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+    
+        // Initialize event listeners when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set up hamburger button click handler
+            const hamburgerButton = document.querySelector('.md\\:hidden button');
+            hamburgerButton.addEventListener('click', toggleMobileMenu);
+            
+            // Set up ALL anchor links for smooth scrolling (including mobile menu)
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    // Smooth scroll to section
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // If this is a mobile menu link, close the menu
+                    if (this.closest('#mobile-menu')) {
+                        const mobileMenu = document.getElementById('mobile-menu');
+                        mobileMenu.classList.add('hidden');
+                    }
                 });
             });
         });
     </script>
-</body>
-</html>
+    </body>
+    </html>
